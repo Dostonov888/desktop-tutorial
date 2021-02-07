@@ -90,9 +90,3 @@ if (appData.period > 0) {
 
 
 
-let showTypeof = function (item) {
-    console.log(typeof item);
-};
-showTypeof(money);
-showTypeof(appData.income);
-showTypeof(appData.deposit);

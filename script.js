@@ -27,7 +27,7 @@ let appData = {
     asking: function () {
         let addExpenses = prompt('Перечилите возможные расходы через запятую!', 'кино, театр');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
-        appData.budgetDay = Number(appData.money / 30);
+        appData.budgetDay = Number(money / 30);
         alert('Бюджет на день ' + Math.floor(appData.budgetDay) + ' рублей');
         appData.budgetMonth = +appData.budgetDay * 30;
         appData.deposit = confirm('Есть ли у вас депозит в банке?');

@@ -4,13 +4,11 @@ let isNumber = function (n) {
 };
 let money, // доход за месец,число
 
-
     start = function () {
         do {
             money = prompt('Ваш месячный доход?', 50000);
-        }   //модалный окно.по умолч строка сейчас число
+        }
         while (!isNumber(money));
-        //если money не число или пустой строка или равно нулл
     };
 start();
 
@@ -27,64 +25,40 @@ const appData = {
     mission: 100000,//любое число (Какую сумму хотите накопить)
     period: 6,//число от 1 до 12 (месяцев)
     asking: function () {
+
         let addExpenses = prompt('Перечилите возможные расходы через запятую!', 'кино, театр');
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
-
-
-
-
 
         for (let i = 0; i < 2; i++) {
             let expenses = prompt('Введите обязательную статью расходов');
             let answer;
             do {
                 answer = prompt('Во сколько это обойдется?', 1000);
-            }   //модалный окно.по умолч строка сейчас число
+            }
             while (!isNumber(answer));
 
-
             appData.expenses[expenses] = +answer;
-            console.log(appData.expenses);
 
         }
-
-
-
-
-
-
-
-        // for (let i = 0; i < 2; i++) {
-        //     while (addExpenses)
-        // }
-        // appData.expenses = Object.enteries()
 
     },
 
     getBudget: function () {
         appData.budgetMonth = appData.budget - appData.expensesMonth;
-        appData.budgetDay = appData.budgetMonth / 30;
+        appData.budgetDay = Math.floor(appData.budgetMonth / 30);
     },
 
     getExpensesMonth: function () {
-
         for (let key in appData.expenses) {
             appData.expensesMonth += +appData.expenses[key];
         }
         return appData.expensesMonth;
 
-
     },
 
-
-
-
-
-
     getTargetMonth: function () {
-        return appData.mission / appData.budgetMonth;
-
+        return Math.ceil(appData.mission / appData.budgetMonth);
     },
 
     getStatusIncome: function () {
@@ -97,10 +71,7 @@ const appData = {
         } else if (appData.budgetDay > 0 && appData.budgetDay === 600 && appData.budgetDay < 1200) {
             console.log('К какому уровню не важно');
         }
-
     },
-
-
 };
 appData.asking();
 appData.getExpensesMonth();
@@ -117,7 +88,6 @@ if (appData.period > 0) {
 
 for (let key in appData) {
     console.log('Наша программа включает в себя данные: ' + key + ' - ' + appData[key]);
-}
-console.log(appData.expenses);
+};
 
 

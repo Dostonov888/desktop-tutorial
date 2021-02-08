@@ -1,4 +1,4 @@
-" use strict ";
+"use strict";
 let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
@@ -7,15 +7,15 @@ let money, // доход за месец,число
 
     start = function () {
         do {
-            money = +prompt('Ваш месячный доход?', 50000);
+            money = prompt('Ваш месячный доход?', 50000);
         }   //модалный окно.по умолч строка сейчас число
-        while (isNaN(money) || money === '' || money === null);
+        while (!isNumber(money));
         //если money не число или пустой строка или равно нулл
     };
 start();
 
 const appData = {
-    budget: money,
+    budget: +money,
     budgetDay: 0,// дневной бюджет
     budgetMonth: 0,//бюджет на месяц
     income: {}, //,//с дополнительными доходом (фрелансер),строка
@@ -27,9 +27,8 @@ const appData = {
     mission: 100000,//любое число (Какую сумму хотите накопить)
     period: 6,//число от 1 до 12 (месяцев)
     asking: function () {
-        let addExpenses = prompt('Перечилите возможные расходы через запятую!', 'кино, театр')
+        let addExpenses = prompt('Перечилите возможные расходы через запятую!', 'кино, театр');
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
-
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
 
@@ -40,15 +39,15 @@ const appData = {
             let expenses = prompt('Введите обязательную статью расходов');
             let answer;
             do {
-                answer = +prompt('Во сколько это обойдется?', 1000);
+                answer = prompt('Во сколько это обойдется?', 1000);
             }   //модалный окно.по умолч строка сейчас число
-            while (!isNumber(answer))
+            while (!isNumber(answer));
 
 
-            appData.expenses[expenses] = answer;
+            appData.expenses[expenses] = +answer;
             console.log(appData.expenses);
 
-        };
+        }
 
 
 
@@ -64,8 +63,8 @@ const appData = {
     },
 
     getBudget: function () {
+        appData.budgetMonth = appData.budget - appData.expensesMonth;
         appData.budgetDay = appData.budgetMonth / 30;
-        appData.budgetMonth = appData.money - appData.expensesMonth;
     },
 
     getExpensesMonth: function () {
@@ -74,21 +73,12 @@ const appData = {
             appData.expensesMonth += +appData.expenses[key];
         }
         return appData.expensesMonth;
-        //
-        // appData.expenses = sum;
-        // for (let i = 0; i < 2; i++) {
-        //     appData.addExpenses[i] = appData.expenses;
-
-        //     if (typeof (appData.addExpenses) != null && typeof (appData.expenses) != null && appData.addExpenses != '' && appData.expenses != '' && appData.addExpenses.length < 50) {
-
 
 
     },
 
 
-    getAccumulatedMonth: function () {
 
-    },
 
 
 

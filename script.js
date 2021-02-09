@@ -1,15 +1,17 @@
+
+
 "use strict";
 let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
-let money, // доход за месец,число
+let money; // доход за месец,число
 
-    start = function () {
-        do {
-            money = prompt('Ваш месячный доход?', 50000);
-        }
-        while (!isNumber(money));
-    };
+let start = function () {
+    do {
+        money = prompt('Ваш месячный доход?', 50000);
+    }
+    while (!isNumber(money));
+};
 start();
 
 const appData = {
@@ -30,19 +32,30 @@ const appData = {
 
         if (confirm('Есть ли у вас дополнительный источник зароботка?')) {
             let itemIncome = prompt('Какой у вас дополнительный зароботок?', 'Таксует');
+            while (typeof (itemIncome) != 'string' || typeof (itemIncome) === null || itemIncome === '') {
+                itemIncome = prompt('Какой у вас дополнительный зароботок?', 'Таксует');
+            }
             let cashIncome = prompt('Cколько в месяц вы на этом зароботаваете?', 10000);
+            while (isNaN(cashIncome) || cashIncome === null || cashIncome === '') {
+                cashIncome = prompt('Cколько в месяц вы на этом зароботаваете?', 10000);
+            }
             appData.income[itemIncome] = +cashIncome;
-            while (typeof (itemIncome) != 'string' || typeof (itemIncome) == null || itemIncome == '');
-
         }
+
         //typeof (items) === 'string' && typeof (items) != null && items != '')
-        let addExpenses = prompt('Перечилите возможные расходы через запятую!', 'кино, театр');
+        let addExpenses = prompt('Перечилите возможные расходы через запятую!', 'кино, театр, учеба');
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
+        while (typeof (addExpenses) != 'string' || typeof (addExpenses) === null || addExpenses === '') {
+            let addExpenses = prompt('Перечилите возможные расходы через запятую!', 'кино, театр, учеба');
+        }
         this.addExpenses = this.addExpenses.map(item => item.toLowerCase().trim().slice(0, 1).toUpperCase() + item.slice(1));
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
         for (let i = 0; i < 2; i++) {
             let expenses = prompt('Введите обязательную статью расходов');
+            while (typeof (expenses) != 'string' || typeof (expenses) === null || expenses === '') {
+                expenses = prompt('Введите обязательную статью расходов');
+            }
             let answer;
             do {
                 answer = prompt('Во сколько это обойдется?', 1000);

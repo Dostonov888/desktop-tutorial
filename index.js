@@ -23,12 +23,30 @@ elems[3].after(elems[6]);
 elems[6].after(elems[8]);
 elems[49].before(elems[55]);
 elems[50].after(elems[48]);
+elems[9].after(elems[12]);
+elems[12].after(elems[14]);
+elems[39].prepend(elems[45]);
+elems[0].prepend(elems[1]);
+elems[40].after(elems[38]);
+elems[38].after(elems[42]);
+elems[47].after(elems[48]);
+elems[54].after(elems[55]);
+elems[7].before(elems[6]);
+elems[15].after(elems[8]);
+elems[37].after(elems[36]);
+elems[43].after(elems[41]);
+elems[48].after(elems[47]);
+elems[18].after(elems[17]);
+elems[28].after(elems[27]);
+elems[28].after(elems[27]);
+elems[7].after(elems[6]);
+
 /* в шестой книге добавить главу “Глава 8: За пределами ES6” и поставить её в правильное место*/
 const newElem = document.createElement('li');
 newElem.textContent = 'Глава 8: За пределами ES6';
-elems[25].append(newElem);
+elems[55].append(newElem);
 
-
+console.log(elems);
 
 
 
